@@ -6,6 +6,8 @@
   "dependencies": {
     "@babel/runtime": "^7.15.5",
     "@civic/solana-gateway-react": "^0.10.0",
+    "@dynamic-labs/sdk-react-core": "^0.18.12",
+    "@dynamic-labs/solana-all": "^0.18.12",
     "@identity.com/solana-gateway-ts": "^0.10.0",
     "@mui/icons-material": "^5.10.9",
     "@mui/lab": "^5.0.0-alpha.104",

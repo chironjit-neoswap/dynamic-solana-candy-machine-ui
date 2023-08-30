@@ -6,6 +6,9 @@ import { DEFAULT_TIMEOUT } from "./connection";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 
+import { DynamicContextProvider, DynamicWidget} from '@dynamic-labs/sdk-react-core';
+import { SolanaWalletConnectors } from '@dynamic-labs/solana-all';
+
 import {
   ConnectionProvider,
   WalletProvider,
@@ -69,20 +72,27 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ConnectionProvider endpoint={endpoint}>
+      {/* <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
-          <WalletDialogProvider>
-            <Home
-              candyMachineId={candyMachineId}
-              connection={connection}
-              txTimeout={DEFAULT_TIMEOUT}
-              rpcHost={rpcHost}
-              network={network}
-              error={error}
-            />
-          </WalletDialogProvider>
+          <WalletDialogProvider> */}
+          <DynamicContextProvider
+          settings={{
+            environmentId: 'your-environment-id',
+            walletConnectors: [ SolanaWalletConnectors ],
+          }}>
+            <DynamicWidget />
+              <Home
+                candyMachineId={candyMachineId}
+                connection={connection}
+                txTimeout={DEFAULT_TIMEOUT}
+                rpcHost={rpcHost}
+                network={network}
+                error={error}
+              />
+          </DynamicContextProvider>
+          {/* </WalletDialogProvider>
         </WalletProvider>
-      </ConnectionProvider>
+      </ConnectionProvider> */}
     </ThemeProvider>
   );
 };
